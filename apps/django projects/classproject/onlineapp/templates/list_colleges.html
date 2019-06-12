@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+{% if online.add_college in permissions %}
+<div>
+<a class="button"  href="/onlineapp/addcollege/">add college</a>
+</div>
+{% endif %}
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Acronym</th>
+        <th>Contact</th>
+        <th>Actions</th>
+    </tr>
+    {% for clg in colleges %}
+    <tr><td><a href="/onlineapp/get_colleges/{{clg.id}}" >
+        {{ clg.name }}</a>
+        </td>
+        <td><a href="/onlineapp/get_colleges/{{clg.id}}" >
+        {{ clg.location }}</a>
+        </td>
+        <td><a href="/onlineapp/get_colleges/{{clg.id}}" >
+        {{ clg.acronym }}</a>
+        </td>
+        <td><a href="/onlineapp/get_colleges/{{clg.id}}" >
+        {{ clg.contact }}</a>
+        </td>
+        <td>
+            <a href="{{clg.id}}/edit">edit </a>| <a href="{{ clg.id }}/delete">delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+<table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<form action="" method="POST" class="flex">
+    {% csrf_token %}
+    {{ form1 }}
+    <br><br>
+    {{ form2 }}<br>
+    <input type="submit" class="button" value="submit">
+    </form>
+</body>
+</html>

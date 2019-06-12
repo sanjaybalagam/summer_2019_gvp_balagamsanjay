@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+<a class="button"  href="{{ college.id }}/addstudent">add student</a>
+<table class="table">
+    <tr><th>Name</th>
+    <th>Email</th>
+    <th>Marks</th>
+    <td>Actions</td>
+    </tr>
+    {% for i in students %}
+    <tr>
+        <td>
+            {{ i.name|safe }}
+        </td>
+        <td>{{ i.email|safe }}</td>
+        <td>{{ i.mocktest1.total|safe }}</td>
+        <td><a href="{{ college.id }}/{{ i.id }}/edit">Edit </a>| <a href="{{ college.id }}/{{ i.id }}/delete"> Delete</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
