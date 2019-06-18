@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+<nav class="navbar is-black">
+    <h1>{{ team }}  season  {{ year }}</h1>
+    <h1 class="is-black"> </h1>
+    <div class="navbar-brand buttons navbar-item navbar-end button">
+        {% if isauth %}
+                <a href="{% url 'logout' %}" class="button is-info">LOGOUT</a>
+        {% endif %}
+    </div>
+</nav>
+
+
+
+<script>
+    const fun1 = () =>
+    {
+
+
+    }
+    const fun2 = () =>{
+        
+    }
+</script>
+<div class="container">
+    <div class="box" align="center">
+   <div>
+    <select id="year" class="button">
+        <option value="select year" onchange="fun1()">select year</option>
+        {% for i in years %}
+        <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+
+</div>
+
+
+<div >
+    <select id="teamselect" onchange="fun2()" style="display:none;">
+        {% for team in teams %}
+        <option value="{{ team }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+</div>
+</div>
+</div>
+</body>
+</html>

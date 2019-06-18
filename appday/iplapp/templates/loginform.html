@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+<div class="container" >
+<div class="box" style="justify-content:center; padding:50px;">
+<form method="POST" class="form">
+
+<table class="table" align="center">
+    {% csrf_token %}
+    {{ form }}
+    </table>
+    <table class="table" align="center">
+<tr>
+    <td><input type="submit" class="button" ></input>
+    </td>
+    <td><a href="{{ link }}" class="button">{{ link }}</a>
+    </td>
+</tr>
+    </table>
+</form>
+</div>
+    </div>
+{% if messages %}
+<div class="container">
+    <div class="box">
+        <h1 align="center">{{ messages }}</h1>
+    </div>
+</div>
+{% endif %}
+<br>
+</body>
+</html>

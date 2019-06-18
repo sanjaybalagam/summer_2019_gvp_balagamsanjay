@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOMEPAGE</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+
+
+
+
+
+<nav class="navbar is-black">
+    <h1 class="is-black">ipl season {{ year }}</h1>
+    <select id=""  class="button" ONCHANGE="window.location =  this.options[this.selectedIndex].value" >
+            <option value="http://127.0.0.1:8000/">select</option>
+                {% for i in list %}
+                    <option value="http://127.0.0.1:8000/{{ i }}">{{ i }}</option>
+                {% endfor %}
+    </select>
+    <div class="navbar-brand buttons navbar-item navbar-end button">
+        {% if isauth %}
+                <a href="{% url 'logout' %}" class="button is-info">LOGOUT</a>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container">
+    <table class="table is-outlined" align="center">
+        <tr><th>teamsplayer</th>
+            <th>City</th>
+            <th>Venue</th>
+            <th>toss</th>
+            <th>decision </td>
+            <th>result</th>
+            <th>player of the match</th>
+        </tr>
+        {% for season in seasons %}
+        <tr>
+            <td>{{ season.team1 }} ,{{season.team2}}</td>
+            <td>{{ season.city }}</td>
+            <td>{{ season.venue }}</td>
+            <td>{{ season.toss_winner }}</td>
+            <td> {{ season.toss_decision }}</td>
+            <td>{{ season.result }}</td>
+            <td>{{ season.player_of_match }}</td>
+            <td><a href="http://127.0.0.1:8000/match/{{ season.matchid }}" class="button">view match details</a></td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+
+    <!--   pagination    -->
+<nav class="pagination is-centered" >
+  <ul class="pagination-list">
+        {% if seasons.has_previous %}
+            <a href="?page=1" class="button pagination-previous">&laquo; first</a>
+            <a href="?page={{ seasons.previous_page_number }}" class="button">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ seasons.number }} of {{ seasons.paginator.num_pages }}.
+        </span>
+
+        {% if seasons.has_next %}
+            <a href="?page={{ seasons.next_page_number }}" class="button">next</a>
+            <a href="?page={{ seasons.paginator.num_pages }}" class="button pagination-next">last &raquo;</a>
+        {% endif %}
+  </ul>
+</nav>
+
+
+</body>
+</html>

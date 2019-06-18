@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOMEPAGE</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar is-black">
+    <h1 class="is-black">ipl season {{ year }}</h1>
+    <select id=""  ONCHANGE="window.location =  this.options[this.selectedIndex].value" >
+            <option value="http://127.0.0.1:8000/">select</option>
+                {% for i in list %}
+                    <option value="http://127.0.0.1:8000/pointstable/{{ i }}">{{ i }}</option>
+                {% endfor %}
+    </select>
+    <div class="navbar-brand buttons navbar-item navbar-end button">
+        {% if isauth %}
+                <a href="{% url 'logout' %}" class="button is-info">LOGOUT</a>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container">
+    <table class="table is-outlined" align="center">
+        <tr>
+            <th>
+                Team Name
+            </th>
+            <th>
+                Points
+            </th>
+        </tr>
+        {% for i in teams %}
+        <tr>
+            <td>
+                {{i.0}}
+            </td>
+            <td>
+                {{ i.1  }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

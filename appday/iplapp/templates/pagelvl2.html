@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page lvl-2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+        const fun1 = ( click)=>{
+            innings1=document.getElementById('innings1');
+            innings2=document.getElementById('innings2');
+            tab1=document.getElementById('tab1');
+            tab2=document.getElementById('tab2');
+
+            if (click ==1)
+            {
+                innings1.style.display="block";
+                innings2.style.display="none";
+                tab1.style.display="none";
+                tab2.style.display="block";
+
+            }
+            else
+            {
+
+                innings1.style.display="none";
+                innings2.style.display="block";
+                tab1.style.display="block";
+                tab2.style.display="none";
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+<nav class="navbar is-black">
+    <div class="navbar-brand buttons navbar-item navbar-end">
+        <a href="{% url 'logout' %}" class="button is-info">LOGOUT</a>
+    </div>
+</nav>
+<div  class="container">
+    <div align="center" class="box ">
+    <h2><strong>TEAM1 , TEAM2  :</strong> {{  match.team1 }} , {{ match.team2 }}  </h2>
+    <h2><strong>Toss result and decision :</strong>  {{ match.toss_winner}}  {{ match.toss_decision }}</h2>
+    <h2><strong>Winner :</strong> {{ match.winner }}</h2>
+    <h2> <strong>details and margin: </strong> won by {% if match.win_by_runs > 0 %} {{ match.win_by_runs }} runs {% else %} {{ match.win_by_wickets }}wickets {% endif %}</h2>
+    <h2><strong>Man of the Match: </strong>{{ match.player_of_match }}</h2>
+     </div>
+    <div>   <hr>
+        <h1><strong>{{ team1 }} batting stats</strong></h1>
+        <ol>
+        {% for i in topscore_team1 %}
+        <li><h2><strong> {% for j in i %} {{ j }}  {% endfor %}</strong></h2></li>
+        {% endfor %}
+        </ol>
+            <hr>
+        <h1><strong>{{ team2 }} batting stats</strong></h1>
+        <ol>
+        {% for i in topscore_team2 %}
+        <li><h2><strong> {% for j in i %}{{ j }} {% endfor %}</strong></h2></li>
+        {% endfor %}
+        </ol>
+        <hr>
+
+        <h1><strong>{{ team1 }} bowling stats</strong></h1>
+        <ol>
+        {% for i in topbowlers1 %}
+        <li><h2><strong> {% for j in i %}{{ j }} {% endfor %}</strong></h2></li>
+        {% endfor %}
+        </ol>
+
+        <hr>
+        <h1><strong>{{ team2 }} bowling stats</strong></h1>
+        <ol>
+        {% for i in topbowlers2 %}
+        <li><h2><strong> {% for j in i %}{{ j }} {% endfor %}</strong></h2></li>
+        {% endfor %}
+        </ol>
+
+            <hr>
+
+
+    </div>
+</div>
+<div>
+
+        <div id="innings1" >
+        <table class="table" align="center">
+        <tr>
+            <th><strong>Over</strong></th>
+            <th><strong>Ball</strong></th>
+            <th><strong>Batsman</strong></th>
+            <th><strong>Non-Striker</strong></th>
+            <th><strong>Bowler</strong></th>
+            <th><strong>runs / wicket</strong></th>
+        </tr>
+            {% for i in innings1 %}
+        <tr>
+            <td>{{ i.over }}</td>
+            <td>{{ i.ball }}</td>
+            <td>{{ i.batsman }}</td>
+            <td>{{ i.non_striker }}</td>
+            <td>{{ i.bowler }}</td>
+            <td>
+                {% if i.dismissal_kind %}
+                    {{ i.dismissal_kind }} by  {% if i.fielder %}{{ i.fielder }} {% endif %}
+                {% else %}
+                    {{ i.total_runs }}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+            </table>
+        </div>
+        <div id="innings2" style="display:none;">
+        <table class="table" align="center">
+        <tr>
+            <th><strong>Over</strong></th>
+            <th><strong>Ball</strong></th>
+            <th><strong>Batsman</strong></th>
+            <th><strong>Non-Striker</strong></th>
+            <th><strong>Bowler</strong></th>
+            <th><strong>runs / wicket</strong></th>
+        </tr>
+
+            {% for i in innings2 %}
+        <tr>
+            <td>{{ i.over }}</td>
+            <td>{{ i.ball }}</td>
+            <td>{{ i.batsman }}</td>
+            <td>{{ i.non_striker }}</td>
+            <td>{{ i.bowler }}</td>
+            <td>
+                {% if i.dismissal_kind %}
+                    {{ i.dismissal_kind }} by  {% if i.fielder %}{{ i.fielder }} {% endif %}
+                {% else %}
+                    {{ i.total_runs }}
+                {% endif %}
+            </td>
+        </tr>
+
+        {% endfor %}
+        </table>
+        </div>
+
+    <div align="center">
+
+
+    <div id="tab1" style="display:none;">
+            <a onclick="fun1(1)" class="button" >innings1 </a>
+     </div>
+    <div id="tab2"  >
+        <a onclick="fun1(2)" class="button">innings2</a>
+     </div>
+    </div>
+</div>
+</body>
+</html>
